@@ -7,7 +7,7 @@ export class Active {
   constructor(rule) {
     this.init(rule.bind(this));
   }
-  
+
   init(rule) {
     this._subject = new Rx.Subject();
     rule(this._subject);
@@ -19,7 +19,7 @@ export class Active {
     };
   }
 
-  next(e){
+  next(e) {
     this._subject.next(e);
   }
 

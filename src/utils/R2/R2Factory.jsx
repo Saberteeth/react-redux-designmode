@@ -1,16 +1,13 @@
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
-export function createAction({
-  who,
-  active = "DEFAULT"
-}, ...datas) {
+export function createAction({ who, active = "DEFAULT" }, ...datas) {
   return {
     type: who,
     data: {
       type: active,
       ...datas
     }
-  }
+  };
 }
 
 /**
@@ -23,9 +20,9 @@ export function createAction({
 export function connectActionFactory(view, luncher, actions = {}) {
   const obj = {
     state: null,
-    buildState: (topState) => Object.assign({}, topState, obj.state)
-  }
-  const mapStateToProps = (state) => {
+    buildState: topState => Object.assign({}, topState, obj.state)
+  };
+  const mapStateToProps = state => {
     obj.state = luncher(state);
     return {
       /**
@@ -33,21 +30,18 @@ export function connectActionFactory(view, luncher, actions = {}) {
        */
       getState: () => obj.state,
       oldState: state
-    }
+    };
   };
-  actions.sendAction = function ({
-    who,
-    active
-  }, ...datas) {
-    return (dispatch) => {
+  actions.sendAction = function({ who, active }, ...datas) {
+    return dispatch => {
       const type = who;
       const data = {
-        "type": active,
-        "buildState": obj.buildState,
+        type: active,
+        buildState: obj.buildState,
         ...datas
-      }
-      dispatch({"type": type, "data": data});
-    }
+      };
+      dispatch({ type: type, data: data });
+    };
   };
   return connect(mapStateToProps, actions)(view);
 }
@@ -56,5 +50,5 @@ export function connectActionFactory(view, luncher, actions = {}) {
  * Return allthing about R2Factory.
  */
 export default {
-  connect : connectActionFactory
-}
+  connect: connectActionFactory
+};

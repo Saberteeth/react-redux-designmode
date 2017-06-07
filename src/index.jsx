@@ -1,6 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import MainView from './MainView'
+import React from "react";
+import ReactDOM from "react-dom";
+import MainView from "./MainView";
 
-ReactDOM.render(
-  (<MainView />), document.getElementById('app'))
+ReactDOM.render(<MainView />, document.getElementById("app"));

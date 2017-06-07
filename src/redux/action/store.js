@@ -3,11 +3,11 @@ import { createAction } from "../../utils/R2/R2Factory";
 import Rx from "rxjs";
 
 const Database = {
-  data:'<h1>Readme</h1><p>This is a demo about <strong>RichEditor</strong>. U can try everything.<em>There have some feature about it:</em></p><ul><li>Ugly</li><li>Bad icons</li><li>A little Utils</li></ul><p><em><strong>Package:</strong></em></p><ol><li><em>React</em></li><li><em>draft-js</em></li><li><em>draft-js-export-html</em></li></ol><p><em><strong>This is code:</strong></em></p><pre><code><em>import React from "react";</em><br><em>import RichEditor from "./index";</em><br><em>const value = "..."</em><br><em>const onChange = html =&gt; console.log(html);</em><br><em>export default () =&gt; &lt;RichEditor value={value} onChange={onChange} /&gt;</em></code></pre><blockquote><em>https://draftjs.org/</em></blockquote><blockquote><em>http://www.react.org/</em></blockquote><blockquote><em>https://www.npmjs.com/package/draft-js-export-html</em></blockquote>',
+  data: '<h1>Readme</h1><p>This is a demo about <strong>RichEditor</strong>. U can try everything.<em>There have some feature about it:</em></p><ul><li>Ugly</li><li>Bad icons</li><li>A little Utils</li></ul><p><em><strong>Package:</strong></em></p><ol><li><em>React</em></li><li><em>draft-js</em></li><li><em>draft-js-export-html</em></li></ol><p><em><strong>This is code:</strong></em></p><pre><code><em>import React from "react";</em><br><em>import RichEditor from "./index";</em><br><em>const value = "..."</em><br><em>const onChange = html =&gt; console.log(html);</em><br><em>export default () =&gt; &lt;RichEditor value={value} onChange={onChange} /&gt;</em></code></pre><blockquote><em>https://draftjs.org/</em></blockquote><blockquote><em>http://www.react.org/</em></blockquote><blockquote><em>https://www.npmjs.com/package/draft-js-export-html</em></blockquote>',
   updataFlag: new Date().getTime()
-}
+};
 
-export default  class Type {
+export default class Type {
   static get TYPE() {
     return "STORE";
   }
@@ -60,7 +60,7 @@ const loadResert = new Active(subject => {
 const load = new Active(subject => {
   subject.throttleTime(3000).subscribe(dispatch => {
     console.log("load readme");
-    if(Database.updataFlag == load.updataFlag) return;
+    if (Database.updataFlag == load.updataFlag) return;
 
     load.isLoading = true;
     loadBegin.subject.next(dispatch);
@@ -73,14 +73,14 @@ export function loadReadme() {
   };
 }
 const save = new Active(subject => {
-  subject.throttleTime(3000).subscribe(readme=>{
+  subject.throttleTime(3000).subscribe(readme => {
     console.log("updata readme.");
     Database.data = readme;
-    Database.updataFlag = new Date().getTime();    
-  })
-})
-export function saveReadme(readme){
+    Database.updataFlag = new Date().getTime();
+  });
+});
+export function saveReadme(readme) {
   return dispatch => {
     save.subject.next(readme);
-  }
+  };
 }

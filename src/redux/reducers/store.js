@@ -1,16 +1,16 @@
-import Store from "../action/store"
+import Store from "../action/store";
 
 /**
  * enum of load.
  */
 export class LoadType {
-  static get LOADING(){
+  static get LOADING() {
     return 0;
   }
-  static get LOADEND(){
+  static get LOADEND() {
     return 1;
   }
-  static get LOADERR(){
+  static get LOADERR() {
     return 2;
   }
 }
@@ -22,7 +22,7 @@ export class LoadType {
 export function statusFactory(obj) {
   obj.status = {};
   for (name in obj) {
-    obj.status[name +'Status'] = LoadType.LOADEND
+    obj.status[name + "Status"] = LoadType.LOADEND;
   }
   return obj;
 }
@@ -38,17 +38,16 @@ function initState() {
 }
 
 const reducer = (state = initState(), action) => {
-
   switch (action.type) {
     case Store.TYPE:
       const active = action.data;
-      const newState = Object.assign({},state);
-      switch(active.type){
+      const newState = Object.assign({}, state);
+      switch (active.type) {
         case Store.LOAD_README:
           newState.status.readmeStatus = LoadType.LOADING;
           return newState;
         case Store.ERROR_README:
-          newState.status.readmeStatus = LoadType.LOADERR;        
+          newState.status.readmeStatus = LoadType.LOADERR;
           return newState;
         case Store.SUCCESS_README:
           newState.status.readmeStatus = LoadType.LOADEND;

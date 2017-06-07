@@ -1,9 +1,9 @@
-import point from './point.svg';
-import firm from './firm.svg';
-import rightarrow from './rightarrow.svg';
-import setting from './setting.svg';
-import camera from './camera.svg';
-import add from './add.svg';
+import point from "./point.svg";
+import firm from "./firm.svg";
+import rightarrow from "./rightarrow.svg";
+import setting from "./setting.svg";
+import camera from "./camera.svg";
+import add from "./add.svg";
 
 export default {
   Add: add,
@@ -12,4 +12,4 @@ export default {
   Rightarrow: rightarrow,
   Camera: camera,
   Setting: setting
-}
+};
