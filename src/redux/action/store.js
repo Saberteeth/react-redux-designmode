@@ -59,6 +59,7 @@ const loadResert = new Active(subject => {
 });
 const load = new Active(subject => {
   subject.throttleTime(3000).subscribe(dispatch => {
+    console.log("load readme");
     if(Database.updataFlag == load.updataFlag) return;
 
     load.isLoading = true;
@@ -71,9 +72,9 @@ export function loadReadme() {
     load.next(dispatch);
   };
 }
-
 const save = new Active(subject => {
   subject.throttleTime(3000).subscribe(readme=>{
+    console.log("updata readme.");
     Database.data = readme;
     Database.updataFlag = new Date().getTime();    
   })

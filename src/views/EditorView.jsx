@@ -6,7 +6,8 @@ class Stage extends React.Component{
   componentWillMount() {
     this.props.loadReadme();
     this.state = {
-      value: null
+      value: null,
+      isChange: false
     }
   }
 
@@ -26,10 +27,11 @@ class Stage extends React.Component{
   }
 
   onChange(e){
-    this.setState({value:e.target.value});
+    this.setState(Object.assign({},this.state,{value:e.target.value,isChange:true}));
   }
 
   onClick(e){
+    this.setState(Object.assign({},this.state,{isChange:false}));
     this.props.saveReadme(this.state.value);
   }  
 
@@ -38,7 +40,7 @@ class Stage extends React.Component{
       <div id="editor-view">
         <textarea onChange={this.onChange.bind(this)} value={this.value||""}/>
         <br/>
-        <button disabled={this.store.status.readmeStatus != 1?'disable':""} onClick={this.onClick.bind(this)}>Save</button>        
+        <button disabled={!this.state.isChange?'disable':""} onClick={this.onClick.bind(this)}>Save</button>        
       </div>
     )
   }
