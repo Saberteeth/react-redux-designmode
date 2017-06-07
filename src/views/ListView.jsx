@@ -9,7 +9,7 @@ export function ListView(props) {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/editor">Login</Link>
+          <Link to="/editor">Editor</Link>
         </li>
       </ul>
     </div>
