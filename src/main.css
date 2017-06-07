@@ -3,6 +3,7 @@ body{
 }
 a{
   text-decoration: none;
+  color: currentColor;
 }
 #main-view > .left-content{
   border:1px solid black;
@@ -19,18 +20,39 @@ a{
   width: 20%;
  
 }
+#main-view > .right-content >ul{
+  padding-left: 20px;
+}
 
 #main-view > .right-content >ul > li{
   padding-left: 6px;
+  padding-right: 6px;
   font-size: 14px;
+  list-style: none;
+  color: black;
 }
+
+#main-view > .right-content >ul > li > span{
+  margin-right: 6px;
+  position: relative;
+  top:2px;
+  
+}
+
+#main-view > .right-content >ul > li svg{
+  fill:currentColor;
+}
+
+
+
 #main-view > .right-content >ul > li:hover{
   background: lightblue;
   transition: all .4s;
 }
 
 #main-view > .right-content >ul > .active{
-  background: lightblue;
+  background:rgba(31,51,111,.5);
+  color: white
 }
 
 
@@ -59,6 +81,15 @@ a{
     transition: all .4s;
   }
 
+  #main-view > .right-content >ul > li > span {
+    opacity: 0;
+  }
+
+  #main-view > .right-content >ul > .active{
+    background:none;
+    color: yellow;
+  }
+
   #main-view > .right-content > h1 {
     display: none;
   }
@@ -68,15 +99,12 @@ a{
     margin: 0;
   }
 
-  a{
-    color: white;
-  }
-
   #main-view > .right-content > ul > li { 
     margin-top: 8px;
     list-style: none;
     float: right;
     margin-right: 20px;
+    color:white;
   }
 
   #main-view > .left-content{
@@ -84,27 +112,6 @@ a{
     padding:2.5%;
     margin-top: 40px;
   }
-}
-
-#vcons > ul > li{
-  list-style: none;
-  float: left;
-  border: 1px solid lightblue;
-  fill: lightblue;
-  padding:20px;
-  margin:10px;
-  transition: all .2s;
-}
-
-#vcons > ul > li:hover{
-  box-shadow: 0 0 18px rgba(129, 199, 132, 0.4);
-  border-color: rgba(129, 199, 132, 0.6);
-  fill: lightgreen;
-}
-
-#vcons > ul > li svg {
-  width:40px;
-  height: 40px;
 }
 
 textarea{
