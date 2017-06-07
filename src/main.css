@@ -1,0 +1,108 @@
+body{
+  background-color: rgb(235,235,235);
+}
+a{
+  text-decoration: none;
+}
+#main-view > .left-content{
+  border:1px solid black;
+  float: left;
+  width: 70%;
+  padding:4.5%;
+  min-width: 600px;
+  min-height: 400px;
+}
+
+#main-view > .right-content{
+  border:1px solid black;
+  float: right;
+  width: 20%;
+ 
+}
+
+#main-view > .right-content >ul > li{
+  font-size: 14px;
+}
+#main-view > .right-content >ul > li:hover{
+  background: lightblue;
+  transition: all .4s;
+}
+
+
+#main-view > .right-content > h1{
+  background:rgba(31,51,111,.8);
+  color: white;
+  padding-left: 10px;
+}
+
+
+@media screen and (max-width:1000px){
+  #main-view > .right-content { 
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    padding:0;
+    height: 40px;
+    box-shadow: 0 1px 6px rgba(0,0,0,.6);
+    border: none;
+  }
+
+  #main-view > .right-content >ul > li:hover{
+    background: none;
+    font-size: 18px;
+    transition: all .4s;
+  }
+
+  #main-view > .right-content > h1 {
+    display: none;
+  }
+  #main-view > .right-content > ul {
+    height: 40px;
+    background:rgba(31,51,111,.8);
+    margin: 0;
+  }
+
+  a{
+    color: white;
+  }
+
+  #main-view > .right-content > ul > li { 
+    margin-top: 8px;
+    list-style: none;
+    float: right;
+    margin-right: 20px;
+  }
+
+  #main-view > .left-content{
+    width: 95%;
+    padding:2.5%;
+    margin-top: 40px;
+  }
+}
+
+#vcons > ul > li{
+  list-style: none;
+  float: left;
+  border: 1px solid lightblue;
+  fill: lightblue;
+  padding:20px;
+  margin:10px;
+  transition: all .2s;
+}
+
+#vcons > ul > li:hover{
+  box-shadow: 0 0 18px rgba(129, 199, 132, 0.4);
+  border-color: rgba(129, 199, 132, 0.6);
+  fill: lightgreen;
+}
+
+#vcons > ul > li svg {
+  width:40px;
+  height: 40px;
+}
+
+textarea{
+  width: 80%;
+  height: 200px;
+}
