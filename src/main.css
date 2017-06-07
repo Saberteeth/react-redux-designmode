@@ -21,11 +21,16 @@ a{
 }
 
 #main-view > .right-content >ul > li{
+  padding-left: 6px;
   font-size: 14px;
 }
 #main-view > .right-content >ul > li:hover{
   background: lightblue;
   transition: all .4s;
+}
+
+#main-view > .right-content >ul > .active{
+  background: lightblue;
 }
 
 
