@@ -7,3 +7,7 @@ This is a demo about react&redux design mode.
 ### Start
 * npm start
 * Visit ***localhost:8888*** in your browser
+
+### Output
+* npm run build
+* Visit ***./dist*** in your src.
