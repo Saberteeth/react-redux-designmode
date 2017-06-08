@@ -7,7 +7,7 @@ function IRouter({ value, status }) {
     case 0:
       return <div>Loading...</div>;
     case 1:
-      return <div dangerouslySetInnerHTML={{ __html: value }} />;
+      return <div id="screen" dangerouslySetInnerHTML={{ __html: value }} />;
     case 2:
       return <div>Error!</div>;
   }

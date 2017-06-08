@@ -1,12 +1,12 @@
 import React from "react";
 import R2Factory from "../utils/R2/R2Factory";
 import { loadReadme, saveReadme } from "../redux/action/store";
+import Editor from "../utils/RichEditor/index";
 
 class Stage extends React.Component {
   componentWillMount() {
     this.props.loadReadme();
     this.state = {
-      value: null,
       isChange: false
     };
   }
@@ -15,20 +15,21 @@ class Stage extends React.Component {
     return this.props.getState();
   }
 
-  get value() {
+  _router() {
     switch (this.store.status.readmeStatus) {
       case 0:
         return "Loading..";
       case 1:
-        return !this.state.value ? this.store.readme : this.state.value;
+        //return !this.state.value ?  : this.state.value;
+        return <Editor value={this.store.readme || ""} onChange={this.onChange.bind(this)}/>;
       case 2:
         return "LoadError!";
     }
   }
 
-  onChange(e) {
+  onChange(html) {
     this.setState(
-      Object.assign({}, this.state, { value: e.target.value, isChange: true })
+      Object.assign({}, this.state, { value: html, isChange: true })
     );
   }
 
@@ -40,10 +41,7 @@ class Stage extends React.Component {
   render() {
     return (
       <div id="editor-view">
-        <textarea
-          onChange={this.onChange.bind(this)}
-          value={this.value || ""}
-        />
+        {this._router()}
         <br />
         <button
           disabled={!this.state.isChange ? "disable" : ""}
