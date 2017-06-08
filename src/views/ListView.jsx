@@ -7,7 +7,7 @@ export function ListView(props) {
   const who = window.location.href.split("#")[1];
   return (
     <div className="right-content">
-      <h1>List</h1>
+      <h1>Menu</h1>
       <ul>
         <li className={who == "/" ? "active" : ""}>
           <Camera />
