@@ -64,6 +64,10 @@ a{
 
 
 @media screen and (max-width:1000px){
+  #main-view > .left-content{
+    border:none;
+  }
+
   #main-view > .right-content { 
     position: fixed;
     top: 0;
