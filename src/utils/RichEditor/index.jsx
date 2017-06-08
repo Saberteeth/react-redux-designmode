@@ -8,20 +8,44 @@ import {
 } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
 import "./index.css";
+import VCon from "../VCon/VCon";
+const { Bold, Titleone, Titletwo, Italic, List, Inport, Code, Unline } = VCon;
 
 const BLOCK_TYPES = [
   { label: "<>", style: "code-block" },
   { label: "1", style: "header-one" },
   { label: "2", style: "header-two" },
   { label: "’", style: "blockquote" },
-  { label: "UL", style: "unordered-list-item" },
-  { label: "OL", style: "ordered-list-item" }
+  { label: "UL", style: "unordered-list-item" }
 ];
 const INLINE_STYLES = [
   { label: "B", style: "BOLD" },
   { label: "/", style: "ITALIC" },
   { label: "U", style: "UNDERLINE" }
 ];
+function label(name){
+  switch(name){
+    case "1":
+      return <Titleone />
+    case "2":
+      return <Titletwo />
+    case "UL":
+      return <List />
+    case "B":
+      return <Bold />
+    case "/":
+      return <Italic />
+    case "’":
+      return <Inport />
+    case "<>":
+      return <Code />;
+    case "U":
+      return <Unline />
+    default:
+      return <Bold />
+  }
+}
+
 class StyleButton extends React.Component {
   constructor() {
     super();
@@ -37,7 +61,7 @@ class StyleButton extends React.Component {
     }
     return (
       <span className={className} onMouseDown={this.onToggle}>
-        {this.props.label}
+        {label(this.props.label)}
       </span>
     );
   }
@@ -72,11 +96,12 @@ const RichTools = ({ editorState, onToggle }) => {
     </div>
   );
 };
+
+
 class RichEditor extends React.Component {
   constructor(props) {
     super(props);
-    const { value, onChange, handler={} } = this.props;
-    this.updataValue(value);
+    const { onChange } = this.props;
     this.focus = () => this.refs.editor.focus();
     this.onChange = editorState => {
       const contentState = editorState.getCurrentContent();
@@ -88,6 +113,11 @@ class RichEditor extends React.Component {
     this.onTab = e => this._onTab(e);
     this.toggleBlockType = type => this._toggleBlockType(type);
     this.toggleInlineStyle = style => this._toggleInlineStyle(style);
+  }
+
+  componentWillMount() {
+    const { value } = this.props;
+    this.updataValue(value);
   }
 
   updataValue(value){
