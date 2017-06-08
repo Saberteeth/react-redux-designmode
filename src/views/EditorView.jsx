@@ -28,7 +28,6 @@ class Stage extends React.Component {
   }
 
   onChange(html) {
-    console.log(html);
     this.setState(
       Object.assign({}, this.state, { value: html, isChange: true })
     );
