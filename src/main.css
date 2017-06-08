@@ -121,7 +121,6 @@ textarea{
 
 #screen{
   font-family: 'Georgia', serif;
-  background: #fff;
   cursor: text;
   font-size: 16px;
   margin-top: 10px;
@@ -140,4 +139,28 @@ textarea{
   font-style: italic;
   margin: 16px 0;
   padding: 5px 10px;
+}
+
+button{
+  height: 50px;
+  width: 50px;
+  border:none;
+  background-color: rgba(31,51,111,.7);
+  color: white;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+button:hover{
+  background-color: rgba(31,51,111,.8);
+}
+
+
+button:active{
+  background-color: rgba(31,51,111,1);
+  outline: none;
+}
+
+button:disabled{
+  background-color: rgba(31,51,111,.4);
 }
