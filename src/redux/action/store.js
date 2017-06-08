@@ -3,7 +3,7 @@ import { createAction } from "../../utils/R2/R2Factory";
 import Rx from "rxjs";
 
 const Database = {
-  data: '<h1>Readme</h1><p>This is a demo about <strong>RichEditor</strong>. U can try everything.<em>There have some feature about it:</em></p><ul><li>Ugly</li><li>Bad icons</li><li>A little Utils</li></ul><p><em><strong>Package:</strong></em></p><ol><li><em>React</em></li><li><em>draft-js</em></li><li><em>draft-js-export-html</em></li></ol><p><em><strong>This is code:</strong></em></p><pre><code><em>import React from "react";</em><br><em>import RichEditor from "./index";</em><br><em>const value = "..."</em><br><em>const onChange = html =&gt; console.log(html);</em><br><em>export default () =&gt; &lt;RichEditor value={value} onChange={onChange} /&gt;</em></code></pre><blockquote><em>https://draftjs.org/</em></blockquote><blockquote><em>http://www.react.org/</em></blockquote><blockquote><em>https://www.npmjs.com/package/draft-js-export-html</em></blockquote>',
+  data: "<h2>Readme</h2><p>This is a demo about react&amp;redux design mode. Hope that can help u creating a better project. There have a lot of utils u can use in your project.</p><p><strong>Util list:</strong></p><ul><li>R2</li><li>RichEditor</li><li>Rxjs</li><li>VCon</li></ul><p>There have a demo about VCon. That's a svg utils that can help u use svg image.</p><p>e.g.</p><pre><code>import VCon from '..';</code></pre><pre><code>const { Setting } = VCon;</code></pre><pre><code>const DemoView = props =&gt; &lt;Setting /&gt;;&nbsp;</code></pre><p><strong>Github:</strong></p><blockquote>https://github.com/Saberteeth/react-redux-designmode</blockquote>",
   updataFlag: new Date().getTime()
 };
 
@@ -84,3 +84,4 @@ export function saveReadme(readme) {
     save.subject.next(readme);
   };
 }
+
