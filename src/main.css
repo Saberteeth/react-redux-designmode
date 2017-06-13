@@ -147,6 +147,23 @@ textarea{
   padding: 5px 10px;
 }
 
+#screen figure{
+  display: inline-block;
+  margin: 0px;
+}
+
+#screen figure + * {
+  display: inline;
+}
+#screen figure + * > * {
+  display: inherit;
+}
+#screen figure > img{
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 16px;
+}
+
 button{
   height: 50px;
   width: 50px;
