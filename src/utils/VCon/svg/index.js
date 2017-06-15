@@ -14,7 +14,10 @@ import unline  from './unline.svg';
 import enport from './import.svg';
 import code from './code.svg';
 
+import fork from './fork.svg';
+
 export default {
+  Fork:fork,
   Add: add,
   Point: point,
   Firm: firm,

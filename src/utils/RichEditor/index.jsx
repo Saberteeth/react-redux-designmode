@@ -6,14 +6,14 @@ import {
   ContentState,
   convertFromHTML,
   AtomicBlockUtils,
-  Entity
+  Entity,
+  Modifier
 } from "draft-js";
 import { stateToHTML } from "draft-js-export-html";
 import "./index.css";
 import VCon from "../VCon/VCon";
-import {BLOCK_TYPES, INLINE_STYLES, RCONS, STYLEMAP} from "./index.json";
+import DEFAULT from "./index.json";
 const { Camera } = VCon;
-const styleMap = STYLEMAP;
 function label(name){
   let View = VCon[name];
   if(!View){
@@ -50,8 +50,6 @@ const RCon = ({contentState,block}) => {
     <img src={src} />
   )
 }
-
-const options = explainStyle(styleMap);
 class StyleButton extends React.Component {
   constructor() {
     super();
@@ -80,9 +78,22 @@ const RichTools = ({ editorState, onToggle, thas }) => {
     .getType();
   const currentStyle = editorState.getCurrentInlineStyle();
   const contentState = editorState.getCurrentContent();
+
+  let inlinetools = DEFAULT.inline;
+  let blocktools = DEFAULT.block;
+  let rcontools = DEFAULT.rcon;
+  let emojitools = DEFAULT.emoji;
+
+  if(thas.props.tools){
+    const {inline = [],block = [],rcon = [], emoji=[]} = thas.props.tools;
+    inlinetools = inline;
+    blocktools = block;
+    rcontools = rcon;
+    emojitools = emoji;
+  }
   return (
     <div className="RichEditor-tools">
-      {INLINE_STYLES.map(type => (
+      {inlinetools.map(type => (
         <StyleButton
           key={type.label}
           active={currentStyle.has(type.style)}
@@ -91,7 +102,7 @@ const RichTools = ({ editorState, onToggle, thas }) => {
           style={type.style}
         />
       ))}
-      {BLOCK_TYPES.map(type => (
+      {blocktools.map(type => (
         <StyleButton
           key={type.label}
           active={type.style === blockType}
@@ -100,7 +111,7 @@ const RichTools = ({ editorState, onToggle, thas }) => {
           style={type.style}
         />
       ))}
-      {RCONS.map(type => {
+      {rcontools.map(type => {
         const onclick = e => {
           const entitiy = contentState.createEntity('image','IMMUTABLE',{src: type.src});
           const entityKey = entitiy.getLastCreatedEntityKey();
@@ -118,13 +129,34 @@ const RichTools = ({ editorState, onToggle, thas }) => {
           </span>
         )
       })}
+      {emojitools.map(type=>{
+        const onclick = e => {
+          thas._addEmoji(type.emoji);
+        }
+        return (
+          <span key={type.label} onClick={onclick} className="RichEditor-styleButton">
+            {label(type.label)}
+          </span>
+        )
+      })}
     </div>
   );
 };
 class RichEditor extends React.Component {
   constructor(props) {
     super(props);
-    const { onChange } = this.props;
+    const { onChange, tools } = this.props;
+    let options = null;
+
+    if(tools){
+      const {inlineStyle = {}} = tools;
+      options = explainStyle(inlineStyle);
+      this.styleMap = inlineStyle;
+    }else{
+      explainStyle(DEFAULT.inlineStyle);
+      this.styleMap = DEFAULT.inlineStyle;
+    }
+
     this.focus = () => this.refs.editor.focus();
     this.onChange = editorState => {
       const contentState = editorState.getCurrentContent();
@@ -178,6 +210,30 @@ class RichEditor extends React.Component {
       RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
     );
   }
+  _addEmoji(text) {
+    const { editorState } = this.state;
+    const selection = editorState.getSelection();
+    const contentState = editorState.getCurrentContent();
+    const txt = text;
+    let nextEditorState = EditorState.createEmpty();
+    if (selection.isCollapsed()) {
+      const nextContentState = Modifier.insertText(contentState, selection, txt);
+      nextEditorState = EditorState.push(
+        editorState,
+        nextContentState,
+        'insert-characters'
+      );
+    } else {
+      const nextContentState = Modifier.replaceText(contentState, selection, text);
+      nextEditorState = EditorState.push(
+        editorState,
+        nextContentState,
+        'insert-characters'
+      );
+    }
+    this.onChange(nextEditorState);
+  }
+
   getBlockStyle(block) {
     switch (block.getType()) {
       case "blockquote":
@@ -207,8 +263,9 @@ class RichEditor extends React.Component {
         />
         <div className={className + " flag"} onClick={this.focus}>
           <Editor
+            placeholder={this.props.placeholder}
             blockRendererFn={mediaBlockRenderer}
-            customStyleMap={styleMap}
+            customStyleMap={this.styleMap}
             blockStyleFn={this.getBlockStyle}
             editorState={editorState}
             handleKeyCommand={this.handleKeyCommand}
