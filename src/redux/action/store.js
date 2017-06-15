@@ -3,9 +3,11 @@ import { createAction } from "../../utils/R2/R2Factory";
 import Rx from "rxjs";
 
 const Database = {
-  data: "<h1>Readme</h1><p>This is a demo about react&amp;redux design mode. Hope that can help u creating a better project. There have a lot of utils u can use in your project.</p><h2><strong>Util list:</strong></h2><ul><li>R2</li><li>RichEditor</li><li>Rxjs</li><li>VCon</li></ul><figure><img src='/images/pencil.png'/></figure><p>There have a demo about VCon. That's a svg utils that can help u use svg image.</p><p>e.g.</p><pre><code>import VCon from '..';</code></pre><pre><code>const { Setting } = VCon;</code></pre><pre><code>const DemoView = props =&gt; &lt;Setting /&gt;;&nbsp;</code></pre><p><strong>Github:</strong></p><blockquote>https://github.com/Saberteeth/react-redux-designmode</blockquote>",
+  data: "<h1>Readme🍴</h1><p>This is a demo about react&amp;redux design mode. Hope that can help u creating a better project. There have a lot of utils u can use in your project.</p><h2><strong>Util list:</strong></h2><ul><li>R2</li><li>RichEditor</li><li>Rxjs</li><li>VCon</li></ul><p>There have a demo about VCon. That's a svg utils that can help u use svg image.</p><p>e.g.</p><pre><code>import VCon from '..';</code></pre><pre><code>const { Setting } = VCon;</code></pre><pre><code>const DemoView = props =&gt; &lt;Setting /&gt;;&nbsp;</code></pre><p><strong>Github:</strong></p><blockquote>https://github.com/Saberteeth/react-redux-designmode</blockquote>",
   updataFlag: new Date().getTime()
 };
+
+
 
 export default class Type {
   static get TYPE() {
@@ -76,6 +78,7 @@ const save = new Active(subject => {
   subject.throttleTime(3000).subscribe(readme => {
     console.log("updata readme.");
     Database.data = readme;
+    console.log(Database.data);
     Database.updataFlag = new Date().getTime();
   });
 });
